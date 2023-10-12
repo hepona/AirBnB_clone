@@ -23,7 +23,7 @@ class FileStorage():
         public instance method that returns the
         dictionary __objects.
         """
-        return FileStorage.__objects
+        return self.__objects
 
     def new(self, obj):
         """
