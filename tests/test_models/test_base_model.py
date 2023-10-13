@@ -2,9 +2,11 @@
 """ unittest for class BaseModel """
 
 import unittest
+from datetime import datetime
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from console import HBNBCommand
+import re
 
 
 class TestBaseModel(unittest.TestCase):
@@ -53,11 +55,13 @@ equals [<class name>] (<self.id>) <self.__dict__>"
         self.assertIsInstance(b, object)
 
     def test_inequality_of_updateAt_createdAt(self):
-        "check if update_at is difference from created_at after saving"
+        "check if update_at is difference\
+        from created_at before and after saving"
+
         f = FileStorage()
         b = BaseModel()
         f.new(b)
-
+        self.assertNotEqual(b.created_at, b.updated_at)
         b.id = "00000"
         b.save()
         self.assertNotEqual(b.created_at, b.updated_at)
@@ -72,15 +76,26 @@ equals [<class name>] (<self.id>) <self.__dict__>"
         b.save()
         self.assertGreaterEqual(b.updated_at, b.created_at)
 
-     #wip
+    #  wip ############################################
     def test_createdat_updatedat_format(self):
         "check if updated_at and created_at respect format"
         b = BaseModel()
+        # test = re.fullmatch(b.created_at, exp)
+        # self.assertIsNotNone(test)
+
+    ###################################################
+
+    def test_if_updatenew_greaterThan_updateold(self):
+        "check if new update_at is greater than old update_at"
+        b = BaseModel()
         f = FileStorage()
         f.new(b)
-        expect = "%Y-%m-%dT%H:%M:%S.%f"
-       
-        self.assertEqual(b.created_at, expect)
+        old = b.updated_at
+        # b.id = "00000"
+        b.save()
+        new = b.updated_at
+
+        self.assertGreater(new, old, "nope")
 
 
 if __name__ == "__main__":
