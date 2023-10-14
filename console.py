@@ -169,7 +169,7 @@ class HBNBCommand(cmd.Cmd):
         return False
 
     def do_quit(self, args):
-        """Exits the interpreter\n"""
+        """Quit command to exit the program\n"""
         raise SystemExit
 
 
