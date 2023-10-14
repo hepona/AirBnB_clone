@@ -15,7 +15,6 @@ import re
 class HBNBCommand(cmd.Cmd):
     """Encompasses console functionality."""
 
-    intro = "Interpreter welcomes your input.\n"
     prompt = "(hbnb) "
     classes = {
         "BaseModel": BaseModel,
@@ -34,13 +33,10 @@ class HBNBCommand(cmd.Cmd):
         class_object = line.split(" ")
         if len(line) == 0:
             print("** class Name is nonexistent.  **")
-            return
         elif class_object[0] not in self.__class__.classes.keys():
             print("** class doesn't exist  **")
-            return
         elif len(class_object) == 1:
             print("** instance id is nonexistent.  **")
-            return
         else:
             key = class_object[0] + "." + class_object[1]
             all_instances = storage.all()
@@ -176,7 +172,7 @@ class HBNBCommand(cmd.Cmd):
         return False
 
     def do_quit(self, args):
-        """Exits the interpreter"""
+        """Exits the interpreter\n"""
         raise SystemExit
 
 
