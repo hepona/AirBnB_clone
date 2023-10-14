@@ -10,7 +10,8 @@ import re
 
 
 class TestBaseModel(unittest.TestCase):
-    """ unitest for basemodel """
+    """unitest for basemodel"""
+
     def test_Inequality_Of_Two_Id(self):
         """test inequality of two id's"""
         f = FileStorage()
@@ -77,14 +78,15 @@ equals [<class name>] (<self.id>) <self.__dict__>"
         b.save()
         self.assertGreaterEqual(b.updated_at, b.created_at)
 
-    #  wip ############################################
     def test_createdat_updatedat_format(self):
         "check if updated_at and created_at respect format"
         b = BaseModel()
-        # test = re.fullmatch(b.created_at, exp)
-        # self.assertIsNotNone(test)
-
-    ###################################################
+        form = "%Y-%m-%dT%H:%M:%S.%f"
+        dic = b.to_dict()
+        self.assertEqual(datetime.strptime(dic["created_at"], form),
+                         b.created_at)
+        self.assertEqual(datetime.strptime(dic["updated_at"], form),
+                         b.updated_at)
 
     def test_if_updatenew_greaterThan_updateold(self):
         "check if new update_at is greater than old update_at"
@@ -111,8 +113,8 @@ equals [<class name>] (<self.id>) <self.__dict__>"
         dic = b.to_dict()
         for k in dic.keys():
             self.assertTrue(
-                k == "id" or k == "created_at"
-                or k == "updated_at" or k == "__class__"
+                k == "id" or k == "created_at" or
+                k == "updated_at" or k == "__class__"
             )
 
 
