@@ -32,16 +32,16 @@ class HBNBCommand(cmd.Cmd):
         """
         class_object = line.split(" ")
         if len(line) == 0:
-            print("** class Name is nonexistent.  **")
+            print("** class name missing **")
         elif class_object[0] not in self.__class__.classes.keys():
-            print("** class doesn't exist  **")
+            print("** class doesn't exist **")
         elif len(class_object) == 1:
-            print("** instance id is nonexistent.  **")
+            print("** no instance found **")
         else:
             key = class_object[0] + "." + class_object[1]
             all_instances = storage.all()
             if key not in all_instances.keys():
-                print("** no instance found.  **")
+                print("** no instance found **")
             else:
                 obj = all_instances[key]
                 print(str(obj))
@@ -49,9 +49,9 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, line):
         """new object Created"""
         if len(line) == 0:
-            print("** Class Name is nonexistent.  **")
+            print("** class name missing **")
         elif line not in self.__class__.classes.keys():
-            print("** Class is nonexistent.  **")
+            print("** class doesn't exist **")
         else:
             obj = self.__class__.classes[line]()
             obj.save()
@@ -61,23 +61,23 @@ class HBNBCommand(cmd.Cmd):
         """attributes of an object Updated"""
         updates = line.split(" ")
         if len(line) == 0:
-            print("** Class Name is nonexistent.  **")
+            print("** class name missing **")
             return
         elif updates[0] not in __class__.classes.keys():
-            print("** class doesn't exist.  **")
+            print("** class doesn't exist **")
             return
         elif len(updates) == 1:
-            print("** no instance found.  **")
+            print("** instance id missing **")
             return
         elif len(updates) == 2:
-            print("** attribute Name is nonexistent.  **")
+            print("** attribute name missing **")
         elif len(updates) == 3:
             print("** value missing **")
         else:
             key = updates[0] + "." + updates[1]
             all_instances = storage.all()
             if key not in all_instances.keys():
-                print("** no instance found **")
+                print("** instance id missing **")
             else:
                 obj = all_instances[key]
                 setattr(obj, updates[2], updates[3])
@@ -135,7 +135,7 @@ class HBNBCommand(cmd.Cmd):
     def do_operations(self, args):
         """Perform actions on objects"""
 
-    def do_EOF(self, arg):
+    def do_EOF(self, args):
         """Manages program exit on EOF"""
         print()
         return True
@@ -160,11 +160,10 @@ class HBNBCommand(cmd.Cmd):
         }
         match_car = re.search(r"\.", arg)
         if match_car is not None:
-            argl = [arg[: match_car.span()[0]], arg[match_car.span()[1]:]]
+            argl = [arg[: match_car.span()[0]], arg[match_car.span()[1] :]]
             match_car = re.search(r"\((.*?)\)", argl[1])
             if match_car is not None:
-                command = [argl[1][: match_car.span()[0]],
-                           match_car.group()[1:-1]]
+                command = [argl[1][: match_car.span()[0]], match_car.group()[1:-1]]
                 if command[0] in argdict.keys():
                     call_result = "{} {}".format(argl[0], command[1])
                     return argdict[command[0]](call_result)
