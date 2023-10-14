@@ -91,11 +91,23 @@ equals [<class name>] (<self.id>) <self.__dict__>"
         f = FileStorage()
         f.new(b)
         old = b.updated_at
-        # b.id = "00000"
+        b.id = "00000"
         b.save()
         new = b.updated_at
 
         self.assertGreater(new, old, "nope")
+
+    def test_if_createdAt_updatedAt_instance_of_datetime(self):
+        "Check if created_at, and Updated_at are instances of datetime"
+        b = BaseModel()
+        self.assertIsInstance(b.created_at, datetime)
+        self.assertIsInstance(b.updated_at, datetime)
+
+    def test_check_toDict_return_Dictionary(self):
+        "Check if to_dict returned a dictionary that has the correct keys and values"
+        b = BaseModel()
+        dic = b.to_dict().items()
+        self.assertTrue(k == 'id' or dic.key() == 'created_at' or dic.key() == 'updated_at' or dic.key() == '__class__')
 
 
 if __name__ == "__main__":
