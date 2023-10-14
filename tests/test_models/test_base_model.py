@@ -104,12 +104,15 @@ equals [<class name>] (<self.id>) <self.__dict__>"
         self.assertIsInstance(b.updated_at, datetime)
 
     def test_check_toDict_return_Dictionary(self):
-        "Check if to_dict returned a dictionary that has the correct keys and values"
+        "Check if to_dict returned a dictionary\
+        that has the correct keys and values"
         b = BaseModel()
         dic = b.to_dict()
         for k in dic.keys():
-            self.assertTrue(k == 'id' or k == 'created_at' or k == 'updated_at' or k == '__class__')
-
+            self.assertTrue(
+                k == "id" or k == "created_at"
+                or k == "updated_at" or k == "__class__"
+            )
 
 
 if __name__ == "__main__":
