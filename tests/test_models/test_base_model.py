@@ -106,8 +106,10 @@ equals [<class name>] (<self.id>) <self.__dict__>"
     def test_check_toDict_return_Dictionary(self):
         "Check if to_dict returned a dictionary that has the correct keys and values"
         b = BaseModel()
-        dic = b.to_dict().items()
-        self.assertTrue(k == 'id' or dic.key() == 'created_at' or dic.key() == 'updated_at' or dic.key() == '__class__')
+        dic = b.to_dict()
+        for k in dic.keys():
+            self.assertTrue(k == 'id' or k == 'created_at' or k == 'updated_at' or k == '__class__')
+
 
 
 if __name__ == "__main__":
