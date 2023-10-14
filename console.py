@@ -36,7 +36,7 @@ class HBNBCommand(cmd.Cmd):
         elif class_object[0] not in self.__class__.classes.keys():
             print("** class doesn't exist **")
         elif len(class_object) == 1:
-            print("** no instance found **")
+            print("** instance id missing **")
         else:
             key = class_object[0] + "." + class_object[1]
             all_instances = storage.all()
@@ -62,13 +62,10 @@ class HBNBCommand(cmd.Cmd):
         updates = line.split(" ")
         if len(line) == 0:
             print("** class name missing **")
-            return
         elif updates[0] not in __class__.classes.keys():
             print("** class doesn't exist **")
-            return
         elif len(updates) == 1:
             print("** instance id missing **")
-            return
         elif len(updates) == 2:
             print("** attribute name missing **")
         elif len(updates) == 3:
@@ -91,16 +88,16 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         elif target_list[0] not in self.__class__.classes.keys():
-            print("** class doesn't exist.  **")
+            print("** class doesn't exist **")
             return
         elif len(target_list) == 1:
-            print("** no instance found.  **")
+            print("** instance id missing **")
             return
         else:
             key = target_list[0] + "." + target_list[1]
             all_instances = storage.all()
             if key not in all_instances.keys():
-                print("** no instance found. **")
+                print("** no instance found **")
             else:
                 del all_instances[key]
                 storage.save()
@@ -115,7 +112,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 pass
         except NameError:
-            print("** class doesn't exist. **")
+            print("** class doesn't exist **")
             return
         line.strip()
         for key, val in objs.items():
