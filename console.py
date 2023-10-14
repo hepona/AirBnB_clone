@@ -157,10 +157,11 @@ class HBNBCommand(cmd.Cmd):
         }
         match_car = re.search(r"\.", arg)
         if match_car is not None:
-            argl = [arg[: match_car.span()[0]], arg[match_car.span()[1] :]]
+            argl = [arg[: match_car.span()[0]], arg[match_car.span()[1]:]]
             match_car = re.search(r"\((.*?)\)", argl[1])
             if match_car is not None:
-                command = [argl[1][: match_car.span()[0]], match_car.group()[1:-1]]
+                command = [argl[1][: match_car.span()[0]],
+                           match_car.group()[1:-1]]
                 if command[0] in argdict.keys():
                     call_result = "{} {}".format(argl[0], command[1])
                     return argdict[command[0]](call_result)
