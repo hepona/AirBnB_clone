@@ -1,4 +1,4 @@
-.places:not(:first-child) {
+ .places {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -6,6 +6,7 @@
 }
 .places h1{
     font-size: 30px;
+    width: 100%;
 }
 .places article{
     display: inline-block;
