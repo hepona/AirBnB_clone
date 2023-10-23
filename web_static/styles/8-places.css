@@ -28,14 +28,13 @@
 }
 
 .price_by_night {
-   
     border-style: solid ;
     color: #FF5A5F;
     border-color: #FF5A5F  ;
     border-radius: 100%;
     border-width: 4px;
     min-width: 60px;
-    padding: 15px;
+    padding: 18px;
     height: 60px;
     line-height: 60px;
     position: relative;
@@ -50,25 +49,22 @@
 
 }
 .information{
+    display: flex;
     height: 80px;
     padding: 10px;
-    margin: 70px auto;
+    margin: 60px;
     border-style: solid none;
     border-color: #DDDDDD;
     border-width: 1px;
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
     justify-content: space-evenly;
-   
+    
     /* border: top and bottom #DDDDDD 1px */
 }
 
 .max_guest, .number_rooms, .number_bathrooms{
     width: 100%;
-    width: 140px;
     height: 100%;
-    background-size:auto    ;
+    background-size:auto;
     background-repeat: no-repeat;
     margin-left: 20px;
 
@@ -93,3 +89,10 @@
     margin-top: 50px;
     margin-left: -15px;
 }
+
+.description p, .user p{
+    text-align: left;
+    overflow-wrap: break-word ;
+}
+
+
